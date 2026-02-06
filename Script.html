@@ -1,0 +1,151 @@
+<div class="app-container">
+    <nav class="sidebar">
+        <div class="logo">
+            <i class="fas fa-layer-group"></i> 
+            <span>Omini<span class="highlight">Desk</span></span>
+        </div>
+        <div class="nav-links">
+            <a href="#" id="nav-board" class="nav-item active"><i class="fas fa-columns"></i> Board</a>
+            <a href="#" id="nav-analytics" class="nav-item"><i class="fas fa-chart-pie"></i> Analytics</a>
+            <a href="#" id="nav-settings" class="nav-item"><i class="fas fa-cog"></i> Settings</a>
+        </div>
+        <button id="addTicketBtn" class="btn-create">
+            <i class="fas fa-plus"></i> <span>Create Ticket</span>
+        </button>
+    </nav>
+
+    <main class="main-content">
+        
+        <div id="view-board" class="view-section active-view">
+            <header>
+                <div class="header-left">
+                    <h2>Operations Board</h2>
+                    <p id="statsDisplay">Loading...</p>
+                </div>
+                <div class="header-controls">
+                    <div class="search-wrapper">
+                        <i class="fas fa-search"></i>
+                        <input type="text" id="searchInput" placeholder="Search tasks...">
+                    </div>
+                    <select id="priorityFilter">
+                        <option value="all">Priority: All</option>
+                        <option value="High">High</option>
+                        <option value="Medium">Medium</option>
+                        <option value="Low">Low</option>
+                    </select>
+                </div>
+            </header>
+
+            <div class="kanban-wrapper">
+                <div class="column" id="col-open" data-status="Open">
+                    <div class="col-header">
+                        <span class="dot open"></span> Open <span class="count" id="count-open">0</span>
+                    </div>
+                    <div class="task-container" id="list-Open"></div>
+                </div>
+
+                <div class="column" id="col-progress" data-status="In Progress">
+                    <div class="col-header">
+                        <span class="dot progress"></span> In Progress <span class="count" id="count-inprogress">0</span>
+                    </div>
+                    <div class="task-container" id="list-InProgress"></div>
+                </div>
+
+                <div class="column" id="col-resolved" data-status="Resolved">
+                    <div class="col-header">
+                        <span class="dot resolved"></span> Resolved <span class="count" id="count-resolved">0</span>
+                    </div>
+                    <div class="task-container" id="list-Resolved"></div>
+                </div>
+            </div>
+        </div>
+
+        <div id="view-analytics" class="view-section hidden-view">
+            <h2>Analytics Dashboard</h2>
+            <div class="analytics-grid">
+                <div class="stat-card">
+                    <h3>Total Tickets</h3>
+                    <p class="big-number" id="ana-total">0</p>
+                </div>
+                <div class="stat-card">
+                    <h3>Critical Issues</h3>
+                    <p class="big-number" id="ana-high">0</p>
+                </div>
+                <div class="stat-card">
+                    <h3>Resolved</h3>
+                    <p class="big-number" id="ana-resolved">0</p>
+                </div>
+            </div>
+            <p style="margin-top: 20px; color: #64748b;">Detailed charts would be implemented here using a library like Chart.js.</p>
+        </div>
+
+        <div id="view-settings" class="view-section hidden-view">
+            <h2>System Settings</h2>
+            <div class="settings-card">
+                <div class="form-group">
+                    <label>Dark Mode</label>
+                    <select><option>Disabled</option><option>Enabled</option></select>
+                </div>
+                <div class="form-group">
+                    <label>Email Notifications</label>
+                    <select><option>On</option><option>Off</option></select>
+                </div>
+                <button class="btn-submit" style="width: auto;">Save Preferences</button>
+            </div>
+        </div>
+
+    </main>
+</div>
+
+<div id="ticketModal" class="modal">
+    <div class="modal-glass">
+        <div class="modal-header">
+            <h3 id="modalTitle">New Ticket</h3>
+            <span id="closeModal" class="close">&times;</span>
+        </div>
+        <form id="ticketForm">
+            <input type="hidden" id="ticketId">
+            <div class="row">
+                <div class="form-group">
+                    <label>Subject</label>
+                    <input type="text" id="tSubject" required>
+                </div>
+            </div>
+            <div class="row split">
+                <div class="form-group">
+                    <label>Requestor</label>
+                    <input type="text" id="tRequestor" required>
+                </div>
+                <div class="form-group">
+                    <label>Assigned Agent</label>
+                    <input type="text" id="tAssigned" required>
+                </div>
+            </div>
+            <div class="row split">
+                <div class="form-group">
+                    <label>Priority</label>
+                    <select id="tPriority">
+                        <option value="High">High</option>
+                        <option value="Medium">Medium</option>
+                        <option value="Low">Low</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label>Status</label>
+                    <select id="tStatus">
+                        <option value="Open">Open</option>
+                        <option value="In Progress">In Progress</option>
+                        <option value="Resolved">Resolved</option>
+                    </select>
+                </div>
+            </div>
+            <div class="form-group">
+                <label>Description</label>
+                <textarea id="tDescription" rows="3"></textarea>
+            </div>
+            <button type="submit" class="btn-submit">Save Ticket</button>
+        </form>
+    </div>
+</div>
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
