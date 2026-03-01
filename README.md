@@ -56,5 +56,3 @@ cd OmniDesk
 Open `index.html` in your preferred browser. No build steps required! 🔓
 
 ---
-
-Would you like me to help you draft the **README.md** file for this repository as well?
